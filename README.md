@@ -1,4 +1,4 @@
-# MetriX-LM (NAWI-Verify) — Digital OIML R 76 Type-Evaluation Platform
+# MetriX-LM — Digital OIML R 76 Type-Evaluation Platform
 ### Smart India Hackathon 2026 — Problem Statement ID: 26035
 
 > **A laboratory-oriented digital compliance platform that transforms Non-Automatic Weighing Instruments (NAWI) type-evaluation from manual spreadsheets into an auditable, deterministic, and explainable digital workflow.**
@@ -31,68 +31,68 @@ The platform is structured into two clean folders: `frontend` and `backend`:
 
 ```
 MetriX-LM/
-├── package.json                   # Root orchestrator script (concurrently runs frontend & backend)
-├── README.md                      # Complete SIH 2026 documentation & demo guide
+├── package.json                        # Root orchestrator script (concurrently runs frontend & backend)
+├── README.md                           # Complete SIH 2026 documentation & demo guide
 ├── .gitignore
-├── backend/                       # Node.js + Express + TypeScript REST API
+├── backend/                            # Node.js + Express + TypeScript REST API
 │   ├── package.json
 │   ├── tsconfig.json
-│   ├── src/
-│       ├── server.ts              # Express entrypoint, middleware, routes
+│   └── src/
+│       ├── server.ts                   # Express entrypoint, middleware, routes
 │       ├── db/
-│       │   ├── index.ts           # SQLite persistent database schema & ACID-like store
-│       │   └── seed.ts            # Realistic seed data (instruments, test cases, users, audit logs)
+│       │   ├── index.ts                # SQLite persistent database schema & ACID-like store
+│       │   └── seed.ts                 # Realistic seed data (instruments, test cases, users, audit logs)
 │       ├── middleware/
-│       │   ├── auth.ts            # JWT authentication & server-side RBAC
-│       │   └── errorHandler.ts    # Centralized error handler
+│       │   ├── auth.ts                 # JWT authentication & server-side RBAC
+│       │   └── errorHandler.ts         # Centralized error handler
 │       ├── services/
-│       │   ├── oimlEngine.ts      # Deterministic OIML R 76-1 calculation & MPE engine
-│       │   ├── auditService.ts    # Append-only audit logger
-│       │   ├── aiService.ts       # AI specification extraction & test explanation
-│       │   └── reportService.ts   # Standardized OIML R 76-2 report snapshot & exports
+│       │   ├── oimlEngine.ts           # Deterministic OIML R 76-1 calculation & MPE engine
+│       │   ├── auditService.ts         # Append-only audit logger
+│       │   ├── aiService.ts            # AI specification extraction & test explanation
+│       │   └── reportService.ts        # Standardized OIML R 76-2 report snapshot & exports
 │       └── routes/
-│           ├── auth.ts            # Login, logout, current user, role switching
-│           ├── instruments.ts     # NAWI registration & Digital Passport
-│           ├── cases.ts           # Evaluation cases, dynamic test execution & observations
-│           ├── reviews.ts         # Reviewer submission, approval, rejection, and revisions
-│           ├── evidence.ts        # Evidence upload, photo attachments & metadata
-│           ├── equipment.ts       # Calibration equipment traceability master
-│           ├── calculate.ts       # Real-time MPE calculation endpoints
-│           ├── audit.ts           # Audit trail query and inspection
-│           ├── rules.ts           # Versioned ruleset viewer & test applicability
-│           ├── ai.ts              # AI spec extraction & test explanation endpoints
-│           ├── stats.ts           # Dashboard analytics & pass/fail statistics
-│          └── reports.ts         # Report snapshot, CSV, JSON export
+│           ├── auth.ts                 # Login, logout, current user, role switching
+│           ├── instruments.ts          # NAWI registration & Digital Passport
+│           ├── cases.ts                # Evaluation cases, dynamic test execution & observations
+│           ├── reviews.ts              # Reviewer submission, approval, rejection, and revisions
+│           ├── evidence.ts             # Evidence upload, photo attachments & metadata
+│           ├── equipment.ts            # Calibration equipment traceability master
+│           ├── calculate.ts            # Real-time MPE calculation endpoints
+│           ├── audit.ts                # Audit trail query and inspection
+│           ├── rules.ts                # Versioned ruleset viewer & test applicability
+│           ├── ai.ts                   # AI spec extraction & test explanation endpoints
+│           ├── stats.ts                # Dashboard analytics & pass/fail statistics
+│           └── reports.ts              # Report snapshot, CSV, JSON export
 │ 
-└── frontend/                      # React 18 + TypeScript + Vite SPA
+└── frontend/                           # React 18 + TypeScript + Vite SPA
     ├── package.json
     ├── tsconfig.json
-    ├── vite.config.ts             # Proxying /api to backend:5000
+    ├── vite.config.ts                  # Proxying /api to backend:5000
     ├── index.html
     └── src/
-        ├── App.tsx                # Master layout with navigation, active role badge & user switcher
+        ├── App.tsx                     # Master layout with navigation, active role badge & user switcher
         ├── main.tsx
-        ├── index.css              # Styling with theme variables & print styles
+        ├── index.css                   # Styling with theme variables & print styles
         ├── lib/
-        │   ├── api.ts             # Fully-typed REST API client
-        │   ├── authContext.tsx    # Auth & role state management (Technician, Reviewer, Admin)
-        │   └── oiml.ts            # Client-side validation & utilities
+        │   ├── api.ts                  # Fully-typed REST API client
+        │   ├── authContext.tsx         # Auth & role state management (Technician, Reviewer, Admin)
+        │   └── oiml.ts                 # Client-side validation & utilities
         ├── components/
-        │   ├── Navbar.tsx         # Top bar with role switcher, quick stats, user info
-        │   ├── Sidebar.tsx        # Navigation menu
-        │   ├── ExplainableModal.tsx # Step-by-step metrological calculation explanation
-        │   └── AISpecModal.tsx    # AI specification extraction modal
+        │   ├── Navbar.tsx              # Top bar with role switcher, quick stats, user info
+        │   ├── Sidebar.tsx             # Navigation menu
+        │   ├── ExplainableModal.tsx    # Step-by-step metrological calculation explanation
+        │   └── AISpecModal.tsx         # AI specification extraction modal
         └── pages/
-            ├── Dashboard.tsx      # Comprehensive analytics, metrics, recent activities
-            ├── Passport.tsx       # Instrument Digital Passport & history
-            ├── Instruments.tsx    # NAWI registration & equipment master
-            ├── EvaluationCases.tsx# Case management & workflow state tracker
-            ├── CaseExecution.tsx  # Dynamic test execution wizard with real-time explainable MPE
-            ├── ReviewWorkspace.tsx# Reviewer workbench with approval/rejection/revision controls
-            ├── ReportView.tsx     # Standardized OIML R 76-2 certificate with PDF print, JSON & CSV
-            ├── RulesCatalogue.tsx # Versioned OIML ruleset browser
-            ├── EquipmentMaster.tsx# Calibration equipment traceability catalog
-            └── AuditTrail.tsx     # System-wide audit inspection
+            ├── Dashboard.tsx           # Comprehensive analytics, metrics, recent activities
+            ├── Passport.tsx            # Instrument Digital Passport & history
+            ├── Instruments.tsx         # NAWI registration & equipment master
+            ├── EvaluationCases.tsx     # Case management & workflow state tracker
+            ├── CaseExecution.tsx       # Dynamic test execution wizard with real-time explainable MPE
+            ├── ReviewWorkspace.tsx     # Reviewer workbench with approval/rejection/revision controls
+            ├── ReportView.tsx          # Standardized OIML R 76-2 certificate with PDF print, JSON & CSV
+            ├── RulesCatalogue.tsx      # Versioned OIML ruleset browser
+            ├── EquipmentMaster.tsx     # Calibration equipment traceability catalog
+            └── AuditTrail.tsx          # System-wide audit inspection
 ```
 
 ---
