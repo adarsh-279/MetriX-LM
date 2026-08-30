@@ -1,0 +1,23 @@
+{
+  "name": "nawi-verify-oiml-r76",
+  "version": "2.0.0",
+  "private": true,
+  "description": "MetriX-LM (NAWI-Verify) — Digital OIML R 76 Type-Evaluation & Compliance Platform (SIH 2026 PS 26035)",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start": "npm --prefix backend start",
+    "seed": "npm --prefix backend run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

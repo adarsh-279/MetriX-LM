@@ -1,0 +1,1002 @@
+{
+  "users": [
+    {
+      "id": "usr-tech-01",
+      "name": "Rajesh Kumar, Senior Test Engineer",
+      "email": "tech@nawi.gov.in",
+      "password_hash": "$2a$10$jlPzrnG0ipVgfK9NakuZi.bErjKyV1onUEJbVcbjtkf1FxAY8tJAK",
+      "role": "technician",
+      "laboratory_id": "lab-01",
+      "active": true,
+      "created_at": "2026-01-10T00:00:00.000Z"
+    },
+    {
+      "id": "usr-rev-01",
+      "name": "Dr. S. Ananth, Principal Metrologist",
+      "email": "reviewer@nawi.gov.in",
+      "password_hash": "$2a$10$jlPzrnG0ipVgfK9NakuZi.bErjKyV1onUEJbVcbjtkf1FxAY8tJAK",
+      "role": "reviewer",
+      "laboratory_id": "lab-01",
+      "active": true,
+      "created_at": "2026-01-10T00:00:00.000Z"
+    },
+    {
+      "id": "usr-admin-01",
+      "name": "Sunita Verma, System Administrator",
+      "email": "admin@nawi.gov.in",
+      "password_hash": "$2a$10$jlPzrnG0ipVgfK9NakuZi.bErjKyV1onUEJbVcbjtkf1FxAY8tJAK",
+      "role": "admin",
+      "laboratory_id": "lab-01",
+      "active": true,
+      "created_at": "2026-01-05T00:00:00.000Z"
+    },
+    {
+      "id": "usr-mgr-01",
+      "name": "K. Mukherjee, Laboratory Director",
+      "email": "manager@nawi.gov.in",
+      "password_hash": "$2a$10$jlPzrnG0ipVgfK9NakuZi.bErjKyV1onUEJbVcbjtkf1FxAY8tJAK",
+      "role": "lab_manager",
+      "laboratory_id": "lab-01",
+      "active": true,
+      "created_at": "2026-01-05T00:00:00.000Z"
+    }
+  ],
+  "laboratories": [
+    {
+      "id": "lab-01",
+      "name": "National Legal Metrology Testing & Type-Evaluation Centre",
+      "code": "NLMTC-DELHI",
+      "address": "Department of Consumer Affairs, Pusa Campus, New Delhi 110012, India",
+      "contact": "+91-11-2584-0012 | director.nlmtc@nic.in",
+      "accreditation_number": "NABL / OIML-TC9-IND-2026"
+    },
+    {
+      "id": "lab-02",
+      "name": "Regional Legal Metrology Laboratory (Western Region)",
+      "code": "RLML-MUMBAI",
+      "address": "Plot 44, Metrology Bhavan, Sector 18, Navi Mumbai 400705, India",
+      "contact": "+91-22-2789-4401 | head.rlmlmumbai@gov.in",
+      "accreditation_number": "NABL / LM-WR-2024"
+    }
+  ],
+  "instruments": [
+    {
+      "id": "ins-01",
+      "name": "Industrial Bench & Platform Scale",
+      "manufacturer": "Precision Weighing Systems Ltd.",
+      "model": "PWS-30 Pro",
+      "serial_number": "PWS30-2026-00125",
+      "accuracy_class": "III",
+      "max_capacity": 30,
+      "verification_scale_interval": 0.01,
+      "actual_scale_interval": 0.01,
+      "min_capacity": 0.2,
+      "number_of_scale_intervals": 3000,
+      "tare_max": 10,
+      "unit": "kg",
+      "display_type": "High-contrast 7-segment LED with backlight",
+      "load_receptor": "Stainless Steel Platform 400 mm x 400 mm",
+      "power_supply": "230 V AC (50 Hz) / Internal 6V 4Ah Rechargeable Battery",
+      "software_version": "v3.1.2-LM (Checksum: 0x8A4F)",
+      "identification_markings": "Laser-etched metallic nameplate riveted on chassis rear",
+      "photo_url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+      "status": "under_review",
+      "created_at": "2026-08-01T00:00:00.000Z",
+      "updated_at": "2026-08-20T00:00:00.000Z"
+    },
+    {
+      "id": "ins-02",
+      "name": "Analytical Semi-Micro Balance",
+      "manufacturer": "Sartorius Metrology AG",
+      "model": "Cubis II Ultra-Precision",
+      "serial_number": "SAR-CUB2-99014",
+      "accuracy_class": "I",
+      "max_capacity": 220,
+      "verification_scale_interval": 0.001,
+      "actual_scale_interval": 0.0001,
+      "min_capacity": 0.1,
+      "number_of_scale_intervals": 220000,
+      "tare_max": 220,
+      "unit": "g",
+      "display_type": "7-inch Capacitive Colour Touchscreen TFT",
+      "load_receptor": "Draft Shield enclosed Titanium Pan Ø 90 mm",
+      "power_supply": "External 100-240 V AC / 15 V DC Switch-mode PSU",
+      "software_version": "QApp Suite v4.8.0",
+      "identification_markings": "Secured metrological seal on sensor adjustment port",
+      "photo_url": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop&q=80",
+      "status": "under_review",
+      "created_at": "2026-08-15T00:00:00.000Z",
+      "updated_at": "2026-08-25T00:00:00.000Z"
+    },
+    {
+      "id": "ins-03",
+      "name": "Heavy Duty Floor Platform Scale",
+      "manufacturer": "Avery Weigh-Tronix",
+      "model": "ZM510-FL1500",
+      "serial_number": "AVT-2026-00441",
+      "accuracy_class": "III",
+      "max_capacity": 1500,
+      "verification_scale_interval": 0.5,
+      "actual_scale_interval": 0.5,
+      "min_capacity": 10,
+      "number_of_scale_intervals": 3000,
+      "tare_max": 500,
+      "unit": "kg",
+      "display_type": "Graphic IBN display with bargraph indicator",
+      "load_receptor": "Diamond tread steel plate 1200 mm x 1200 mm with 4 IP68 load cells",
+      "power_supply": "230 V AC 50 Hz Mains",
+      "software_version": "ZM-Firmware 1.22",
+      "identification_markings": "Stamping plate affixed near junction box",
+      "photo_url": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
+      "status": "rejected",
+      "created_at": "2026-08-18T00:00:00.000Z",
+      "updated_at": "2026-08-26T00:00:00.000Z"
+    }
+  ],
+  "equipment": [
+    {
+      "id": "eq-01",
+      "name": "E2 Class Stainless Steel Mass Standard Box (1 mg – 500 g)",
+      "serial_number": "NPLI-E2-2024-99",
+      "type": "standard_weights",
+      "accuracy_class": "E2 (OIML R 111)",
+      "calibration_date": "2026-02-15",
+      "due_date": "2027-02-14",
+      "certificate_number": "NPL/CSIR/CAL/2026/0891",
+      "status": "valid"
+    },
+    {
+      "id": "eq-02",
+      "name": "F1 Class Precision Weight Set (1 g – 10 kg)",
+      "serial_number": "W-F1-2025-104",
+      "type": "standard_weights",
+      "accuracy_class": "F1 (OIML R 111)",
+      "calibration_date": "2026-01-20",
+      "due_date": "2027-01-19",
+      "certificate_number": "GATC/CAL/2026/142",
+      "status": "valid"
+    },
+    {
+      "id": "eq-03",
+      "name": "M1 Working Standard Weights (10 kg – 50 kg Cast Iron)",
+      "serial_number": "W-M1-2024-008",
+      "type": "standard_weights",
+      "accuracy_class": "M1 (OIML R 111)",
+      "calibration_date": "2025-11-10",
+      "due_date": "2026-11-09",
+      "certificate_number": "RLML/CAL/2025/990",
+      "status": "valid"
+    },
+    {
+      "id": "eq-04",
+      "name": "Fluke 1620A Precision Thermo-Hygrometer (DewK)",
+      "serial_number": "FLK-ENV-8842",
+      "type": "thermometer",
+      "accuracy_class": "±0.25 °C / ±2% RH",
+      "calibration_date": "2026-03-01",
+      "due_date": "2027-02-28",
+      "certificate_number": "IDEMI/ENV/2026/044",
+      "status": "valid"
+    }
+  ],
+  "cases": [
+    {
+      "id": "4d3c5999-019e-4244-8784-13030be09e0b",
+      "case_number": "CASE-2026-004",
+      "instrument_id": "ins-01",
+      "lab_id": "lab-01",
+      "laboratory_name": "National Legal Metrology Testing & Type-Evaluation Centre",
+      "technician_id": "usr-tech-01",
+      "technician_name": "Rajesh Kumar, Senior Test Engineer",
+      "status": "under_review",
+      "revision": 1,
+      "rule_release_id": "OIML-R76-2006",
+      "test_date": "2026-08-30",
+      "environmental_conditions": {
+        "temperature_start": 22,
+        "temperature_end": 22.5,
+        "humidity_start": 50,
+        "humidity_end": 52,
+        "atmospheric_pressure": 1013.2,
+        "recorded_at": "2026-08-30T08:26:40.625Z"
+      },
+      "equipment_used_ids": [],
+      "overall_result": "pending",
+      "created_at": "2026-08-30T08:26:40.625Z",
+      "updated_at": "2026-08-30T08:26:46.269Z"
+    },
+    {
+      "id": "case-01",
+      "case_number": "CASE-2026-001",
+      "instrument_id": "ins-01",
+      "lab_id": "lab-01",
+      "laboratory_name": "National Legal Metrology Testing & Type-Evaluation Centre",
+      "technician_id": "usr-tech-01",
+      "technician_name": "Rajesh Kumar, Senior Test Engineer",
+      "reviewer_id": "usr-rev-01",
+      "reviewer_name": "Dr. S. Ananth, Principal Metrologist",
+      "status": "approved",
+      "revision": 1,
+      "rule_release_id": "OIML-R76-2006",
+      "test_date": "2026-08-20",
+      "environmental_conditions": {
+        "temperature_start": 22.4,
+        "temperature_end": 22.8,
+        "humidity_start": 54,
+        "humidity_end": 56.5,
+        "atmospheric_pressure": 1013.2,
+        "recorded_at": "2026-08-20T09:30:00Z"
+      },
+      "equipment_used_ids": [
+        "eq-02",
+        "eq-04"
+      ],
+      "overall_result": "pass",
+      "reviewer_comments": "All tests (Weighing Performance, Repeatability, Eccentricity, Zero/Tare, Discrimination) meet OIML R 76-1:2006 Table 3 tolerances. Certificate approved for model approval issuance.",
+      "data_hash": "sha256:8f4c2817d23a10e54b684992dc7a550991ab0b8e7c11f930129bc6223e71d43a",
+      "locked_at": "2026-08-20T16:45:00Z",
+      "created_at": "2026-08-20T09:00:00Z",
+      "updated_at": "2026-08-20T16:45:00Z"
+    },
+    {
+      "id": "case-02",
+      "case_number": "CASE-2026-002",
+      "instrument_id": "ins-02",
+      "lab_id": "lab-01",
+      "laboratory_name": "National Legal Metrology Testing & Type-Evaluation Centre",
+      "technician_id": "usr-tech-01",
+      "technician_name": "Rajesh Kumar, Senior Test Engineer",
+      "reviewer_id": "usr-rev-01",
+      "reviewer_name": "Dr. S. Ananth, Principal Metrologist",
+      "status": "under_review",
+      "revision": 1,
+      "rule_release_id": "OIML-R76-2006",
+      "test_date": "2026-08-25",
+      "environmental_conditions": {
+        "temperature_start": 20.1,
+        "temperature_end": 20.3,
+        "humidity_start": 48,
+        "humidity_end": 49,
+        "atmospheric_pressure": 1015,
+        "recorded_at": "2026-08-25T10:00:00Z"
+      },
+      "equipment_used_ids": [
+        "eq-01",
+        "eq-04"
+      ],
+      "overall_result": "pass",
+      "created_at": "2026-08-25T09:30:00Z",
+      "updated_at": "2026-08-25T14:30:00Z"
+    },
+    {
+      "id": "case-03",
+      "case_number": "CASE-2026-003",
+      "instrument_id": "ins-03",
+      "lab_id": "lab-01",
+      "laboratory_name": "National Legal Metrology Testing & Type-Evaluation Centre",
+      "technician_id": "usr-tech-01",
+      "technician_name": "Rajesh Kumar, Senior Test Engineer",
+      "reviewer_id": "usr-rev-01",
+      "reviewer_name": "Dr. S. Ananth, Principal Metrologist",
+      "status": "rejected",
+      "revision": 1,
+      "rule_release_id": "OIML-R76-2006",
+      "test_date": "2026-08-26",
+      "environmental_conditions": {
+        "temperature_start": 24.5,
+        "temperature_end": 25.1,
+        "humidity_start": 62,
+        "humidity_end": 64,
+        "atmospheric_pressure": 1010.5,
+        "recorded_at": "2026-08-26T11:00:00Z"
+      },
+      "equipment_used_ids": [
+        "eq-03",
+        "eq-04"
+      ],
+      "overall_result": "fail",
+      "rejection_reason": "Eccentricity test failed at Back-Right load cell position (observed error +1.5 kg exceeds MPE ±0.5 kg). Re-level platform and calibrate corner trim potentiometer before resubmission.",
+      "created_at": "2026-08-26T10:30:00Z",
+      "updated_at": "2026-08-26T17:00:00Z"
+    }
+  ],
+  "test_executions": {
+    "case-01": {
+      "weighing_tests": [
+        {
+          "load": 0.2,
+          "indication_inc": 0.2,
+          "indication_dec": 0.2,
+          "error_inc": 0,
+          "error_dec": 0,
+          "mpe": 0.005,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.005 = 0.5e) for load step [0 ≤ m ≤ 500 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 5,
+          "indication_inc": 5,
+          "indication_dec": 5,
+          "error_inc": 0,
+          "error_dec": 0,
+          "mpe": 0.005,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.005 = 0.5e) for load step [0 ≤ m ≤ 500 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 10,
+          "indication_inc": 10.005,
+          "indication_dec": 10,
+          "error_inc": 0.005000000000000782,
+          "error_dec": 0,
+          "mpe": 0.01,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.005) is within MPE (±0.01 = 1e) for load step [500 e < m ≤ 2,000 e (±1.0 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 20,
+          "indication_inc": 20.005,
+          "indication_dec": 20.005,
+          "error_inc": 0.004999999999999005,
+          "error_dec": 0.004999999999999005,
+          "mpe": 0.01,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.005) is within MPE (±0.01 = 1e) for load step [500 e < m ≤ 2,000 e (±1.0 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 30,
+          "indication_inc": 30.01,
+          "indication_dec": 30.005,
+          "error_inc": 0.010000000000001563,
+          "error_dec": 0.004999999999999005,
+          "mpe": 0.015,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.01) is within MPE (±0.015 = 1.5e) for load step [2,000 e < m ≤ Max (±1.5 e)] per OIML R 76-1 Table 3."
+        }
+      ],
+      "repeatability_tests": [
+        {
+          "load": 15,
+          "readings": [
+            15,
+            15,
+            15.005,
+            15,
+            15.005
+          ],
+          "max_val": 15.005,
+          "min_val": 15,
+          "range": 0.005000000000000782,
+          "std_dev": 0.0027386127875262587,
+          "mpe_range": 0.0025,
+          "pass": false,
+          "explanation": "FAIL: Measured range (0.005) exceeds allowed limit (0.003 = 0.25e) by 0.003 per OIML R 76-1 Clause A.4.10."
+        },
+        {
+          "load": 30,
+          "readings": [
+            30.005,
+            30.01,
+            30.005,
+            30.005,
+            30.01
+          ],
+          "max_val": 30.01,
+          "min_val": 30.005,
+          "range": 0.005000000000002558,
+          "std_dev": 0.002738612787527232,
+          "mpe_range": 0.0025,
+          "pass": false,
+          "explanation": "FAIL: Measured range (0.005) exceeds allowed limit (0.003 = 0.25e) by 0.003 per OIML R 76-1 Clause A.4.10."
+        }
+      ],
+      "eccentricity_tests": [
+        {
+          "test_load": 10,
+          "center_reading": 10,
+          "positions": [
+            {
+              "position": "Front-Left",
+              "reading": 10.005,
+              "error": 0.005000000000000782
+            },
+            {
+              "position": "Back-Left",
+              "reading": 10,
+              "error": 0
+            },
+            {
+              "position": "Back-Right",
+              "reading": 10.005,
+              "error": 0.005000000000000782
+            },
+            {
+              "position": "Front-Right",
+              "reading": 10,
+              "error": 0
+            }
+          ],
+          "max_error": 0.005000000000000782,
+          "mpe": 0.01,
+          "pass": true,
+          "explanation": "PASS: Maximum corner deviation (0.005) vs center reference is within MPE (±0.01 = 1e) per OIML R 76-1 Clause A.4.7."
+        }
+      ],
+      "zero_tare_tests": [
+        {
+          "tare_load": 5,
+          "test_load": 10,
+          "net_indication": 10.005,
+          "error": 0.005000000000000782,
+          "mpe": 0.01,
+          "pass": true,
+          "explanation": "PASS: Tare net indication error (0.005) is within MPE (±0.01 = 1e) per OIML R 76-1 Clause A.4.13."
+        },
+        {
+          "tare_load": 10,
+          "test_load": 15,
+          "net_indication": 15.005,
+          "error": 0.005000000000000782,
+          "mpe": 0.01,
+          "pass": true,
+          "explanation": "PASS: Tare net indication error (0.005) is within MPE (±0.01 = 1e) per OIML R 76-1 Clause A.4.13."
+        }
+      ],
+      "discrimination_tests": [
+        {
+          "test_load": 15,
+          "reading_before": 15,
+          "reading_after": 15.01,
+          "change_detected": true,
+          "pass": true,
+          "explanation": "PASS: Instrument triggered clear scale indication change (15 -> 15.01) upon addition of 0.4e weights per OIML R 76-1 Clause A.4.8."
+        }
+      ]
+    },
+    "case-02": {
+      "weighing_tests": [
+        {
+          "load": 0.1,
+          "indication_inc": 0.1,
+          "indication_dec": 0.1,
+          "error_inc": 0,
+          "error_dec": 0,
+          "mpe": 0.0005,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.001 = 0.5e) for load step [0 ≤ m ≤ 50,000 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 50,
+          "indication_inc": 50.0002,
+          "indication_dec": 50.0001,
+          "error_inc": 0.00019999999999953388,
+          "error_dec": 0.00010000000000331966,
+          "mpe": 0.0005,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.001 = 0.5e) for load step [0 ≤ m ≤ 50,000 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 100,
+          "indication_inc": 100.0005,
+          "indication_dec": 100.0004,
+          "error_inc": 0.0005000000000023874,
+          "error_dec": 0.00039999999999906777,
+          "mpe": 0.001,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.001) is within MPE (±0.001 = 1e) for load step [50,000 e < m ≤ 200,000 e (±1.0 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 200,
+          "indication_inc": 200.0008,
+          "indication_dec": 200.0007,
+          "error_inc": 0.0007999999999981355,
+          "error_dec": 0.0006999999999948159,
+          "mpe": 0.001,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.001) is within MPE (±0.001 = 1e) for load step [50,000 e < m ≤ 200,000 e (±1.0 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 220,
+          "indication_inc": 220.0011,
+          "indication_dec": 220.001,
+          "error_inc": 0.0011000000000080945,
+          "error_dec": 0.0010000000000047748,
+          "mpe": 0.0015,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.001) is within MPE (±0.002 = 1.5e) for load step [200,000 e < m ≤ Max (±1.5 e)] per OIML R 76-1 Table 3."
+        }
+      ],
+      "repeatability_tests": [
+        {
+          "load": 100,
+          "readings": [
+            100.0001,
+            100.0002,
+            100.0001,
+            100.0003,
+            100.0002
+          ],
+          "max_val": 100.0003,
+          "min_val": 100.0001,
+          "range": 0.00019999999999242846,
+          "std_dev": 0.00008366600265108941,
+          "mpe_range": 0.00025,
+          "pass": true,
+          "explanation": "PASS: Measured range (0) ≤ permissible limit (0 = 0.25e) over 5 readings (std dev = 0) per OIML R 76-1 Clause A.4.10."
+        }
+      ],
+      "eccentricity_tests": [
+        {
+          "test_load": 70,
+          "center_reading": 70,
+          "positions": [
+            {
+              "position": "Front-Left",
+              "reading": 70.0003,
+              "error": 0.0002999999999957481
+            },
+            {
+              "position": "Back-Left",
+              "reading": 70.0002,
+              "error": 0.0002000000000066393
+            },
+            {
+              "position": "Back-Right",
+              "reading": 70.0004,
+              "error": 0.00039999999999906777
+            },
+            {
+              "position": "Front-Right",
+              "reading": 70.0002,
+              "error": 0.0002000000000066393
+            }
+          ],
+          "max_error": 0.00039999999999906777,
+          "mpe": 0.001,
+          "pass": true,
+          "explanation": "PASS: Maximum corner deviation (0) vs center reference is within MPE (±0.001 = 1e) per OIML R 76-1 Clause A.4.7."
+        }
+      ],
+      "zero_tare_tests": [
+        {
+          "tare_load": 50,
+          "test_load": 50,
+          "net_indication": 50.0003,
+          "error": 0.00030000000000285354,
+          "mpe": 0.0005,
+          "pass": true,
+          "explanation": "PASS: Tare net indication error (0) is within MPE (±0.001 = 0.5e) per OIML R 76-1 Clause A.4.13."
+        }
+      ],
+      "discrimination_tests": [
+        {
+          "test_load": 100,
+          "reading_before": 100,
+          "reading_after": 100.0005,
+          "change_detected": true,
+          "pass": true,
+          "explanation": "PASS: Instrument triggered clear scale indication change (100 -> 100.001) upon addition of 0.4e weights per OIML R 76-1 Clause A.4.8."
+        }
+      ]
+    },
+    "case-03": {
+      "weighing_tests": [
+        {
+          "load": 10,
+          "indication_inc": 10,
+          "indication_dec": 10,
+          "error_inc": 0,
+          "error_dec": 0,
+          "mpe": 0.25,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.25 = 0.5e) for load step [0 ≤ m ≤ 500 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 250,
+          "indication_inc": 250,
+          "indication_dec": 250,
+          "error_inc": 0,
+          "error_dec": 0,
+          "mpe": 0.25,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0) is within MPE (±0.25 = 0.5e) for load step [0 ≤ m ≤ 500 e (±0.5 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 750,
+          "indication_inc": 750.5,
+          "indication_dec": 750,
+          "error_inc": 0.5,
+          "error_dec": 0,
+          "mpe": 0.5,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.5) is within MPE (±0.5 = 1e) for load step [500 e < m ≤ 2,000 e (±1.0 e)] per OIML R 76-1 Table 3."
+        },
+        {
+          "load": 1500,
+          "indication_inc": 1500.5,
+          "indication_dec": 1500.5,
+          "error_inc": 0.5,
+          "error_dec": 0.5,
+          "mpe": 0.75,
+          "pass": true,
+          "explanation": "PASS: Maximum observed error (0.5) is within MPE (±0.75 = 1.5e) for load step [2,000 e < m ≤ Max (±1.5 e)] per OIML R 76-1 Table 3."
+        }
+      ],
+      "repeatability_tests": [
+        {
+          "load": 750,
+          "readings": [
+            750,
+            750.5,
+            750,
+            750.5,
+            750
+          ],
+          "max_val": 750.5,
+          "min_val": 750,
+          "range": 0.5,
+          "std_dev": 0.27386127875258304,
+          "mpe_range": 0.25,
+          "pass": false,
+          "explanation": "FAIL: Measured range (0.5) exceeds allowed limit (0.25 = 0.5e) by 0.25 per OIML R 76-1 Clause A.4.10."
+        }
+      ],
+      "eccentricity_tests": [
+        {
+          "test_load": 500,
+          "center_reading": 500,
+          "positions": [
+            {
+              "position": "Front-Left",
+              "reading": 500,
+              "error": 0
+            },
+            {
+              "position": "Back-Left",
+              "reading": 500.5,
+              "error": 0.5
+            },
+            {
+              "position": "Back-Right",
+              "reading": 501.5,
+              "error": 1.5
+            },
+            {
+              "position": "Front-Right",
+              "reading": 500,
+              "error": 0
+            }
+          ],
+          "max_error": 1.5,
+          "mpe": 0.5,
+          "pass": false,
+          "explanation": "FAIL: Corner deviation (1.5) exceeds MPE (±0.5) by 1 per OIML R 76-1 Clause A.4.7."
+        }
+      ],
+      "zero_tare_tests": [
+        {
+          "tare_load": 200,
+          "test_load": 500,
+          "net_indication": 500.5,
+          "error": 0.5,
+          "mpe": 0.5,
+          "pass": true,
+          "explanation": "PASS: Tare net indication error (0.5) is within MPE (±0.5 = 1e) per OIML R 76-1 Clause A.4.13."
+        }
+      ],
+      "discrimination_tests": [
+        {
+          "test_load": 500,
+          "reading_before": 500,
+          "reading_after": 500.5,
+          "change_detected": true,
+          "pass": true,
+          "explanation": "PASS: Instrument triggered clear scale indication change (500 -> 500.5) upon addition of 0.4e weights per OIML R 76-1 Clause A.4.8."
+        }
+      ]
+    },
+    "4d3c5999-019e-4244-8784-13030be09e0b": {
+      "weighing_tests": [
+        {
+          "load": null,
+          "mpe": 0.015,
+          "pass": false,
+          "explanation": ""
+        }
+      ],
+      "repeatability_tests": [
+        {
+          "load": null,
+          "readings": [],
+          "mpe_range": 0.0025,
+          "pass": false,
+          "explanation": "Incomplete: At least 2 repeated measurements required for repeatability evaluation."
+        }
+      ],
+      "eccentricity_tests": [
+        {
+          "test_load": 10,
+          "positions": [
+            {
+              "position": "Front-Left"
+            },
+            {
+              "position": "Back-Left"
+            },
+            {
+              "position": "Back-Right"
+            },
+            {
+              "position": "Front-Right"
+            }
+          ],
+          "mpe": 0.01,
+          "pass": false,
+          "explanation": "Incomplete: Center reference and corner readings required."
+        }
+      ],
+      "zero_tare_tests": [
+        {
+          "tare_load": 0,
+          "test_load": 0,
+          "mpe": 0.005,
+          "pass": false,
+          "explanation": ""
+        }
+      ],
+      "discrimination_tests": [
+        {
+          "test_load": 0,
+          "change_detected": false,
+          "pass": false,
+          "explanation": "FAIL: No change in indication detected after adding 0.4e incremental load per OIML R 76-1 Clause A.4.8."
+        }
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "id": "ev-01",
+      "case_id": "case-01",
+      "test_type": "weighing_performance",
+      "category": "nameplate",
+      "title": "PWS-30 Pro Stamping & Identification Nameplate Photo",
+      "file_url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+      "file_type": "image/jpeg",
+      "uploader_name": "Rajesh Kumar",
+      "remarks": "Metallic nameplate with serial number PWS30-2026-00125 clearly visible and verified.",
+      "timestamp": "2026-08-20T10:15:00Z"
+    },
+    {
+      "id": "ev-02",
+      "case_id": "case-01",
+      "test_type": "eccentricity",
+      "category": "test_setup",
+      "title": "Corner Loading Test Setup with 10 kg F1 Test Weights",
+      "file_url": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
+      "file_type": "image/jpeg",
+      "uploader_name": "Rajesh Kumar",
+      "remarks": "Weights positioned centrally on quadrant 2 (Back-Left).",
+      "timestamp": "2026-08-20T12:00:00Z"
+    },
+    {
+      "id": "ev-03",
+      "case_id": "case-03",
+      "test_type": "eccentricity",
+      "category": "error_indication",
+      "title": "Eccentricity Over-Tolerance Observation on Display",
+      "file_url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+      "file_type": "image/jpeg",
+      "uploader_name": "Rajesh Kumar",
+      "remarks": "Back-Right corner reading 501.5 kg (deviation +1.5 kg exceeding ±0.5 kg MPE).",
+      "timestamp": "2026-08-26T14:15:00Z"
+    }
+  ],
+  "audit_events": [
+    {
+      "id": "3a73d656-8687-48f1-9a3e-69d28baa4e4b",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar, Senior Test Engineer",
+      "actor_role": "technician",
+      "action": "SUBMIT_FOR_REVIEW",
+      "entity_type": "EvaluationCase",
+      "entity_id": "4d3c5999-019e-4244-8784-13030be09e0b",
+      "before_value": "in_progress",
+      "after_value": "under_review",
+      "reason": "Technician completed observations and submitted for metrologist verification",
+      "timestamp": "2026-08-30T08:26:46.280Z"
+    },
+    {
+      "id": "5319f6d0-250b-479f-bfd2-7766b2e43342",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar, Senior Test Engineer",
+      "actor_role": "technician",
+      "action": "UPDATE_TEST_OBSERVATIONS",
+      "entity_type": "EvaluationCase",
+      "entity_id": "4d3c5999-019e-4244-8784-13030be09e0b",
+      "reason": "Updated test observations and re-ran compliance engine",
+      "timestamp": "2026-08-30T08:26:46.249Z"
+    },
+    {
+      "id": "66c615f8-4196-4e3f-9b9c-9309ed91d082",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar, Senior Test Engineer",
+      "actor_role": "technician",
+      "action": "UPDATE_TEST_OBSERVATIONS",
+      "entity_type": "EvaluationCase",
+      "entity_id": "4d3c5999-019e-4244-8784-13030be09e0b",
+      "reason": "Updated test observations and re-ran compliance engine",
+      "timestamp": "2026-08-30T08:26:40.669Z"
+    },
+    {
+      "id": "b7bbb00c-b184-45b6-b66d-469eb7aa413d",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar, Senior Test Engineer",
+      "actor_role": "technician",
+      "action": "CREATE_EVALUATION_CASE",
+      "entity_type": "EvaluationCase",
+      "entity_id": "4d3c5999-019e-4244-8784-13030be09e0b",
+      "after_value": "Created CASE-2026-004 for Industrial Bench & Platform Scale",
+      "reason": "Started new OIML R 76 evaluation workflow",
+      "timestamp": "2026-08-30T08:26:40.637Z"
+    },
+    {
+      "id": "aud-01",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar (Technician)",
+      "actor_role": "technician",
+      "action": "CREATE_EVALUATION_CASE",
+      "entity_type": "EvaluationCase",
+      "entity_id": "case-01",
+      "after_value": "Created CASE-2026-001 for instrument PWS-30 Pro (Class III)",
+      "reason": "Initiating initial type-evaluation compliance testing",
+      "timestamp": "2026-08-20T09:00:00Z"
+    },
+    {
+      "id": "aud-02",
+      "actor_id": "usr-tech-01",
+      "actor_name": "Rajesh Kumar (Technician)",
+      "actor_role": "technician",
+      "action": "SUBMIT_FOR_REVIEW",
+      "entity_type": "EvaluationCase",
+      "entity_id": "case-01",
+      "before_value": "in_progress",
+      "after_value": "submitted",
+      "reason": "All 5 test procedures completed with PASS outcome",
+      "timestamp": "2026-08-20T14:30:00Z"
+    },
+    {
+      "id": "aud-03",
+      "actor_id": "usr-rev-01",
+      "actor_name": "Dr. S. Ananth (Reviewer)",
+      "actor_role": "reviewer",
+      "action": "APPROVE_AND_LOCK_REPORT",
+      "entity_type": "EvaluationCase",
+      "entity_id": "case-01",
+      "before_value": "under_review",
+      "after_value": "approved",
+      "reason": "Verified observations and deterministic calculation traces. Generated immutable hash.",
+      "timestamp": "2026-08-20T16:45:00Z"
+    },
+    {
+      "id": "aud-04",
+      "actor_id": "usr-rev-01",
+      "actor_name": "Dr. S. Ananth (Reviewer)",
+      "actor_role": "reviewer",
+      "action": "REJECT_AND_REQUEST_CORRECTION",
+      "entity_type": "EvaluationCase",
+      "entity_id": "case-03",
+      "before_value": "under_review",
+      "after_value": "rejected",
+      "reason": "Eccentricity corner deviation (+1.5 kg) exceeds MPE (±0.5 kg) per OIML R 76-1 A.4.7",
+      "timestamp": "2026-08-26T17:00:00Z"
+    }
+  ],
+  "rulesets": [
+    {
+      "id": "OIML-R76-2006",
+      "standard": "OIML R 76-1",
+      "release_year": "2006",
+      "title": "Non-automatic weighing instruments — Metrological and technical requirements — Tests",
+      "status": "active",
+      "effective_date": "2006-10-01",
+      "rules": [
+        {
+          "id": "R76-Table-1",
+          "clause": "3.1 / Table 1",
+          "title": "Accuracy Classes and Scale Interval Verification",
+          "description": "Defines e, nMin, nMax, and Min capacity requirements for Classes I, II, III, and IIII.",
+          "applicable_tests": [
+            "instrument_validation"
+          ],
+          "formula_summary": "n = Max / e, limits per accuracy class."
+        },
+        {
+          "id": "R76-Table-3-MPE",
+          "clause": "3.5.1 / Table 3",
+          "title": "Maximum Permissible Errors on Initial Verification",
+          "description": "Specifies ±0.5e, ±1.0e, and ±1.5e limits according to accuracy class and load steps.",
+          "applicable_tests": [
+            "weighing_performance",
+            "eccentricity",
+            "zero_tare"
+          ],
+          "formula_summary": "0.5e | 1.0e | 1.5e tiered by load in scale intervals."
+        },
+        {
+          "id": "R76-A44-Weighing",
+          "clause": "A.4.4",
+          "title": "Weighing Performance Test (Error of Indication)",
+          "description": "Errors at increasing and decreasing loads must be within MPE for initial verification.",
+          "applicable_tests": [
+            "weighing_performance"
+          ],
+          "formula_summary": "E = I - L, |E| <= MPE(L)."
+        },
+        {
+          "id": "R76-A410-Repeatability",
+          "clause": "A.4.10",
+          "title": "Repeatability Test",
+          "description": "Difference between max and min indications at same load must not exceed 0.25e (if e <= 0.2g) or 0.5e (if e > 0.2g).",
+          "applicable_tests": [
+            "repeatability"
+          ],
+          "formula_summary": "Range = Max - Min <= permissible limit."
+        },
+        {
+          "id": "R76-A47-Eccentricity",
+          "clause": "A.4.7",
+          "title": "Eccentricity (Corner Load) Test",
+          "description": "Test load = 1/3 Max placed at 4 quadrant positions. Deviation vs center reference must be within MPE.",
+          "applicable_tests": [
+            "eccentricity"
+          ],
+          "formula_summary": "Error = I_corner - I_center, |Error| <= MPE(Max/3)."
+        },
+        {
+          "id": "R76-A413-Tare",
+          "clause": "A.4.13",
+          "title": "Tare Setting & Weighing Test",
+          "description": "Errors of net indication with tare applied must not exceed MPE for the net load.",
+          "applicable_tests": [
+            "zero_tare"
+          ],
+          "formula_summary": "E_net = I_net - L_net, |E_net| <= MPE."
+        },
+        {
+          "id": "R76-A48-Discrimination",
+          "clause": "A.4.8",
+          "title": "Discrimination Test",
+          "description": "Instrument must respond to addition of 0.4e small incremental weights.",
+          "applicable_tests": [
+            "discrimination"
+          ],
+          "formula_summary": "Delta I > 0 when 0.4e load is applied."
+        }
+      ]
+    },
+    {
+      "id": "LM-RULES-2011",
+      "standard": "Legal Metrology (General) Rules, 2011",
+      "release_year": "2011",
+      "title": "Indian National Standard for Non-Automatic Weighing Instruments",
+      "status": "active",
+      "effective_date": "2011-04-01",
+      "rules": [
+        {
+          "id": "IN-LM-R76-Harmonized",
+          "clause": "Seventh Schedule - Part I",
+          "title": "Specifications for Non-Automatic Weighing Instruments",
+          "description": "Harmonized Indian Legal Metrology specifications conforming to OIML R 76-1:2006.",
+          "applicable_tests": [
+            "weighing_performance",
+            "repeatability",
+            "eccentricity",
+            "zero_tare"
+          ],
+          "formula_summary": "Conforms to OIML R 76-1 Table 1 and Table 3."
+        }
+      ]
+    }
+  ]
+}
