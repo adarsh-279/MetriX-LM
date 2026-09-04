@@ -7,6 +7,8 @@
 [![OIML R 76-2:2007 Report](https://img.shields.io/badge/Format-OIML%20R%2076--2%3A2007-green)](https://www.oiml.org/en/files/pdf_r/r076-2-e07.pdf)
 [![Architecture: 2-Tier Modular](https://img.shields.io/badge/Architecture-Frontend%20%2B%20Backend-teal)]()
 
+> **Production database decision:** Use **Supabase PostgreSQL** for production. The platform has relational master data, linked test observations, approval transactions, versioned rules and an append-only audit trail. The current backend `db.json` store is for local development and the SIH demo only; it is not a production persistence layer.
+
 ---
 
 ## 🌟 Core Differentiators & Hackathon Features
@@ -40,7 +42,7 @@ MetriX-LM/
 │   └── src/
 │       ├── server.ts                   # Express entrypoint, middleware, routes
 │       ├── db/
-│       │   ├── index.ts                # SQLite persistent database schema & ACID-like store
+│       │   ├── index.ts                # Demo-only in-memory/file persistence adapter
 │       │   └── seed.ts                 # Realistic seed data (instruments, test cases, users, audit logs)
 │       ├── middleware/
 │       │   ├── auth.ts                 # JWT authentication & server-side RBAC
@@ -120,6 +122,14 @@ npm run dev
 - **Frontend SPA**: `http://localhost:5173`
 
 > If you are starting the app for the first time, always run `npm install` at the root before `npm run dev`.
+
+### Prototype and Production Persistence
+
+The current Express backend loads and writes `backend/data/db.json` through an in-memory adapter. This keeps the prototype easy to run locally, but it does not provide concurrent-write safety, horizontal scalability, managed backups, tenant isolation, or production-grade audit guarantees.
+
+For production, migrate the backend persistence layer to the PostgreSQL schema in `supabase/migrations/`. Use the backend as the only privileged data access boundary, keep the Supabase service-role key server-side, and use Supabase Storage (or another private S3-compatible store) for evidence files. The frontend Supabase client is currently a scaffold and should not be treated as the production data path until authentication, authorization and row-level security policies are aligned with the backend workflow.
+
+MongoDB is not the recommended default for this application. It remains a viable alternative only if the data model changes toward mostly independent, document-shaped aggregates and the team is prepared to reimplement relational constraints, reporting joins, transactional approval locking, and audit controls.
 
 ---
 
