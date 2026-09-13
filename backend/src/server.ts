@@ -23,12 +23,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Initialize Database & Seed default data if empty
-initDB();
-if (db.getUsers().length === 0 || db.getInstruments().length === 0) {
-  seedData();
-}
-
 // Middleware
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
@@ -73,9 +67,25 @@ app.use('/api/reports', reportsRoutes);
 // Centralized error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`🚀 MetriX-LM Backend API server running on http://localhost:${PORT}`);
-  console.log(`⚖️  OIML R 76 Compliance Engine ready.`);
-});
+async function initializeApp(): Promise<void> {
+  await initDB();
+  if (db.getUsers().length === 0 || db.getInstruments().length === 0) {
+    seedData();
+  }
+}
+
+export const appReady = initializeApp();
+
+async function startServer(): Promise<void> {
+  await appReady;
+  app.listen(PORT, () => {
+    console.log(`🚀 MetriX-LM Backend API server running on http://localhost:${PORT}`);
+    console.log(`⚖️  OIML R 76 Compliance Engine ready.`);
+  });
+}
+
+if (!process.env.VERCEL) {
+  await startServer();
+}
 
 export default app;
