@@ -134,7 +134,7 @@ export function seedData(): void {
   // 4. Instruments
   const instruments: Instrument[] = [
     {
-      id: 'ins-01',
+      id: '00000000-0000-4000-8000-000000000001',
       name: 'Industrial Bench & Platform Scale',
       manufacturer: 'Precision Weighing Systems Ltd.',
       model: 'PWS-30 Pro',
@@ -158,7 +158,7 @@ export function seedData(): void {
       updated_at: new Date('2026-08-20').toISOString(),
     },
     {
-      id: 'ins-02',
+      id: '00000000-0000-4000-8000-000000000002',
       name: 'Analytical Semi-Micro Balance',
       manufacturer: 'Sartorius Metrology AG',
       model: 'Cubis II Ultra-Precision',
@@ -182,7 +182,7 @@ export function seedData(): void {
       updated_at: new Date('2026-08-25').toISOString(),
     },
     {
-      id: 'ins-03',
+      id: '00000000-0000-4000-8000-000000000003',
       name: 'Heavy Duty Floor Platform Scale',
       manufacturer: 'Avery Weigh-Tronix',
       model: 'ZM510-FL1500',
@@ -301,7 +301,7 @@ export function seedData(): void {
   const case1: EvaluationCase = {
     id: case1Id,
     case_number: 'CASE-2026-001',
-    instrument_id: 'ins-01',
+    instrument_id: '00000000-0000-4000-8000-000000000001',
     lab_id: 'lab-01',
     laboratory_name: labs[0].name,
     technician_id: 'usr-tech-01',
@@ -372,7 +372,7 @@ export function seedData(): void {
   const case2: EvaluationCase = {
     id: case2Id,
     case_number: 'CASE-2026-002',
-    instrument_id: 'ins-02',
+    instrument_id: '00000000-0000-4000-8000-000000000002',
     lab_id: 'lab-01',
     laboratory_name: labs[0].name,
     technician_id: 'usr-tech-01',
@@ -437,7 +437,7 @@ export function seedData(): void {
   const case3: EvaluationCase = {
     id: case3Id,
     case_number: 'CASE-2026-003',
-    instrument_id: 'ins-03',
+    instrument_id: '00000000-0000-4000-8000-000000000003',
     lab_id: 'lab-01',
     laboratory_name: labs[0].name,
     technician_id: 'usr-tech-01',

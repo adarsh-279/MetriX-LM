@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { initDB, db } from './db/index.js';
+import { flushDB, initDB, db } from './db/index.js';
 import { seedData } from './db/seed.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
@@ -71,6 +71,7 @@ async function initializeApp(): Promise<void> {
   await initDB();
   if (db.getUsers().length === 0 || db.getInstruments().length === 0) {
     seedData();
+    await flushDB();
   }
 }
 

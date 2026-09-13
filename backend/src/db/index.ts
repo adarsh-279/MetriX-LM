@@ -46,38 +46,72 @@ let dbMemory: DatabaseSchema = {
   rulesets: [],
 };
 
+let persistenceQueue: Promise<void> = Promise.resolve();
+
 type DomainRow = { id: string; data: unknown };
 
 async function replaceRows(tx: any, table: string, rows: DomainRow[]): Promise<void> {
   const json = (value: unknown) => tx.json(JSON.parse(JSON.stringify(value)));
 
   if (table === 'users') {
-    await tx`delete from metrix_users`;
-    for (const row of rows) await tx`insert into metrix_users (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from users`;
+    for (const row of rows) await tx`insert into users (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'laboratories') {
-    await tx`delete from metrix_laboratories`;
-    for (const row of rows) await tx`insert into metrix_laboratories (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from laboratories`;
+    for (const row of rows) await tx`insert into laboratories (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'instruments') {
-    await tx`delete from metrix_instruments`;
-    for (const row of rows) await tx`insert into metrix_instruments (id, data) values (${row.id}, ${json(row.data)})`;
+    for (const row of rows) {
+      const instrument = row.data as Instrument;
+      await tx`
+        insert into instruments (
+          id, name, manufacturer, model, serial_number, accuracy_class,
+          max_capacity, verification_scale_interval, min_capacity,
+          number_of_scale_intervals, tare_max, created_at
+        ) values (
+          ${instrument.id}, ${instrument.name}, ${instrument.manufacturer}, ${instrument.model},
+          ${instrument.serial_number}, ${instrument.accuracy_class}, ${instrument.max_capacity},
+          ${instrument.verification_scale_interval}, ${instrument.min_capacity},
+          ${instrument.number_of_scale_intervals}, ${instrument.tare_max ?? null}, ${instrument.created_at}
+        )
+        on conflict (id) do update set
+          name = excluded.name,
+          manufacturer = excluded.manufacturer,
+          model = excluded.model,
+          serial_number = excluded.serial_number,
+          accuracy_class = excluded.accuracy_class,
+          max_capacity = excluded.max_capacity,
+          verification_scale_interval = excluded.verification_scale_interval,
+          min_capacity = excluded.min_capacity,
+          number_of_scale_intervals = excluded.number_of_scale_intervals,
+          tare_max = excluded.tare_max
+      `;
+    }
   } else if (table === 'equipment') {
-    await tx`delete from metrix_equipment`;
-    for (const row of rows) await tx`insert into metrix_equipment (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from equipment`;
+    for (const row of rows) await tx`insert into equipment (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'cases') {
-    await tx`delete from metrix_cases`;
-    for (const row of rows) await tx`insert into metrix_cases (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from cases`;
+    for (const row of rows) await tx`insert into cases (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'test_executions') {
-    await tx`delete from metrix_test_executions`;
-    for (const row of rows) await tx`insert into metrix_test_executions (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from test_executions`;
+    for (const row of rows) await tx`insert into test_executions (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'evidence') {
-    await tx`delete from metrix_evidence`;
-    for (const row of rows) await tx`insert into metrix_evidence (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from evidence`;
+    for (const row of rows) await tx`insert into evidence (id, data) values (${row.id}, ${json(row.data)})`;
   } else if (table === 'audit_events') {
-    await tx`delete from metrix_audit_events`;
-    for (const row of rows) await tx`insert into metrix_audit_events (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from audit_events`;
+    await tx`delete from audit_status_history`;
+    for (const row of rows) {
+      const event = row.data as AuditEvent;
+      await tx`insert into audit_events (id, data, status) values (${row.id}, ${json(row.data)}, 'completed')`;
+      await tx`
+        insert into audit_status_history (audit_event_id, status, changed_at, changed_by)
+        values (${row.id}, 'completed', ${event.timestamp}, ${event.actor_id})
+      `;
+    }
   } else if (table === 'rulesets') {
-    await tx`delete from metrix_rulesets`;
-    for (const row of rows) await tx`insert into metrix_rulesets (id, data) values (${row.id}, ${json(row.data)})`;
+    await tx`delete from rulesets`;
+    for (const row of rows) await tx`insert into rulesets (id, data) values (${row.id}, ${json(row.data)})`;
   }
 }
 
@@ -108,33 +142,30 @@ async function persistToSupabase(): Promise<void> {
 export async function initDB(): Promise<void> {
   if (sql) {
     await Promise.all([
-      sql`create table if not exists metrix_users (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_laboratories (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_instruments (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_equipment (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_cases (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_test_executions (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_evidence (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_audit_events (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_rulesets (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
-      sql`create table if not exists metrix_reports (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`select 1`,
     ]);
 
     const [users, laboratories, instruments, equipment, cases, testExecutions, evidence, auditEvents, rulesets] = await Promise.all([
-      sql`select id, data from metrix_users`,
-      sql`select id, data from metrix_laboratories`,
-      sql`select id, data from metrix_instruments`,
-      sql`select id, data from metrix_equipment`,
-      sql`select id, data from metrix_cases`,
-      sql`select id, data from metrix_test_executions`,
-      sql`select id, data from metrix_evidence`,
-      sql`select id, data from metrix_audit_events order by created_at`,
-      sql`select id, data from metrix_rulesets`,
+      sql`select id, data from users`,
+      sql`select id, data from laboratories`,
+      sql`select id, name, manufacturer, model, serial_number, accuracy_class, max_capacity, verification_scale_interval, min_capacity, number_of_scale_intervals, tare_max, created_at from instruments`,
+      sql`select id, data from equipment`,
+      sql`select id, data from cases`,
+      sql`select id, data from test_executions`,
+      sql`select id, data from evidence`,
+      sql`select id, data from audit_events order by created_at`,
+      sql`select id, data from rulesets`,
     ]);
     dbMemory = {
       users: users.map((row) => row.data as User),
       laboratories: laboratories.map((row) => row.data as Laboratory),
-      instruments: instruments.map((row) => row.data as Instrument),
+      instruments: instruments.map((row) => ({
+        ...row,
+        actual_scale_interval: Number(row.verification_scale_interval),
+        unit: 'kg',
+        status: 'active',
+        updated_at: row.created_at?.toISOString?.() || new Date().toISOString(),
+      }) as Instrument),
       equipment: equipment.map((row) => row.data as CalibrationEquipment),
       cases: cases.map((row) => row.data as EvaluationCase),
       test_executions: Object.fromEntries(testExecutions.map((row) => [row.id, row.data as TestExecutionData])),
@@ -167,7 +198,9 @@ export async function initDB(): Promise<void> {
 
 export function saveDB(): void {
   if (sql) {
-    void persistToSupabase().catch((err) => console.error('Error saving database to Supabase:', err));
+    persistenceQueue = persistenceQueue
+      .then(() => persistToSupabase())
+      .catch((err) => console.error('Error saving database to Supabase:', err));
     return;
   }
 
@@ -181,6 +214,10 @@ export function saveDB(): void {
   } catch (err) {
     console.error('Error saving database:', err);
   }
+}
+
+export function flushDB(): Promise<void> {
+  return persistenceQueue;
 }
 
 export const db = {
