@@ -1,4 +1,9 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+const API_BASE = configuredApiUrl || '/api';
+
+if (import.meta.env.PROD && !configuredApiUrl) {
+  console.error('VITE_API_URL is missing from the production frontend build; API requests will use the frontend origin.');
+}
 
 export interface ApiResponse<T = any> {
   success: boolean;
