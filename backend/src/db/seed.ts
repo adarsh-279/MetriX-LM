@@ -15,8 +15,6 @@ import type {
 import { evaluateWeighingPoint, evaluateRepeatability, evaluateEccentricity, evaluateZeroTare, evaluateDiscrimination } from '../services/oimlEngine.js';
 
 export function seedData(): void {
-  initDB();
-
   console.log('🌱 Seeding MetriX-LM OIML database with realistic test cases & master data...');
 
   const passwordHash = bcrypt.hashSync('password123', 10);

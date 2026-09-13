@@ -1,6 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import 'dotenv/config';
+import postgres from 'postgres';
 import type {
   User,
   Laboratory,
@@ -17,6 +19,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_DIR = path.resolve(__dirname, '../../data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
+const databaseUrl = process.env.DATABASE_URL || process.env.SUPABASE_DB_URL;
+const sql = databaseUrl ? postgres(databaseUrl, { prepare: false }) : null;
 
 export interface DatabaseSchema {
   users: User[];
@@ -42,8 +46,106 @@ let dbMemory: DatabaseSchema = {
   rulesets: [],
 };
 
-// Initialize DB file
-export function initDB(): void {
+type DomainRow = { id: string; data: unknown };
+
+async function replaceRows(tx: any, table: string, rows: DomainRow[]): Promise<void> {
+  const json = (value: unknown) => tx.json(JSON.parse(JSON.stringify(value)));
+
+  if (table === 'users') {
+    await tx`delete from metrix_users`;
+    for (const row of rows) await tx`insert into metrix_users (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'laboratories') {
+    await tx`delete from metrix_laboratories`;
+    for (const row of rows) await tx`insert into metrix_laboratories (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'instruments') {
+    await tx`delete from metrix_instruments`;
+    for (const row of rows) await tx`insert into metrix_instruments (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'equipment') {
+    await tx`delete from metrix_equipment`;
+    for (const row of rows) await tx`insert into metrix_equipment (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'cases') {
+    await tx`delete from metrix_cases`;
+    for (const row of rows) await tx`insert into metrix_cases (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'test_executions') {
+    await tx`delete from metrix_test_executions`;
+    for (const row of rows) await tx`insert into metrix_test_executions (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'evidence') {
+    await tx`delete from metrix_evidence`;
+    for (const row of rows) await tx`insert into metrix_evidence (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'audit_events') {
+    await tx`delete from metrix_audit_events`;
+    for (const row of rows) await tx`insert into metrix_audit_events (id, data) values (${row.id}, ${json(row.data)})`;
+  } else if (table === 'rulesets') {
+    await tx`delete from metrix_rulesets`;
+    for (const row of rows) await tx`insert into metrix_rulesets (id, data) values (${row.id}, ${json(row.data)})`;
+  }
+}
+
+function stateRows(): Record<string, DomainRow[]> {
+  return {
+    users: dbMemory.users.map((item) => ({ id: item.id, data: item })),
+    laboratories: dbMemory.laboratories.map((item) => ({ id: item.id, data: item })),
+    instruments: dbMemory.instruments.map((item) => ({ id: item.id, data: item })),
+    equipment: dbMemory.equipment.map((item) => ({ id: item.id, data: item })),
+    cases: dbMemory.cases.map((item) => ({ id: item.id, data: item })),
+    test_executions: Object.entries(dbMemory.test_executions).map(([id, data]) => ({ id, data })),
+    evidence: dbMemory.evidence.map((item) => ({ id: item.id, data: item })),
+    audit_events: dbMemory.audit_events.map((item) => ({ id: item.id, data: item })),
+    rulesets: dbMemory.rulesets.map((item) => ({ id: item.id, data: item })),
+  };
+}
+
+async function persistToSupabase(): Promise<void> {
+  if (!sql) return;
+
+  const rows = stateRows();
+  await sql.begin(async (tx) => {
+    for (const [table, values] of Object.entries(rows)) await replaceRows(tx, table, values);
+  });
+}
+
+// Load Supabase state when configured; retain db.json for local development.
+export async function initDB(): Promise<void> {
+  if (sql) {
+    await Promise.all([
+      sql`create table if not exists metrix_users (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_laboratories (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_instruments (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_equipment (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_cases (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_test_executions (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_evidence (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_audit_events (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_rulesets (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+      sql`create table if not exists metrix_reports (id text primary key, data jsonb not null, created_at timestamptz not null default now())`,
+    ]);
+
+    const [users, laboratories, instruments, equipment, cases, testExecutions, evidence, auditEvents, rulesets] = await Promise.all([
+      sql`select id, data from metrix_users`,
+      sql`select id, data from metrix_laboratories`,
+      sql`select id, data from metrix_instruments`,
+      sql`select id, data from metrix_equipment`,
+      sql`select id, data from metrix_cases`,
+      sql`select id, data from metrix_test_executions`,
+      sql`select id, data from metrix_evidence`,
+      sql`select id, data from metrix_audit_events order by created_at`,
+      sql`select id, data from metrix_rulesets`,
+    ]);
+    dbMemory = {
+      users: users.map((row) => row.data as User),
+      laboratories: laboratories.map((row) => row.data as Laboratory),
+      instruments: instruments.map((row) => row.data as Instrument),
+      equipment: equipment.map((row) => row.data as CalibrationEquipment),
+      cases: cases.map((row) => row.data as EvaluationCase),
+      test_executions: Object.fromEntries(testExecutions.map((row) => [row.id, row.data as TestExecutionData])),
+      evidence: evidence.map((row) => row.data as Evidence),
+      audit_events: auditEvents.map((row) => row.data as AuditEvent),
+      rulesets: rulesets.map((row) => row.data as RuleRelease),
+    };
+    console.log('Loaded domain tables from Supabase');
+    return;
+  }
+
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
@@ -64,6 +166,11 @@ export function initDB(): void {
 }
 
 export function saveDB(): void {
+  if (sql) {
+    void persistToSupabase().catch((err) => console.error('Error saving database to Supabase:', err));
+    return;
+  }
+
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
