@@ -353,13 +353,17 @@ export function overallResult(passes: boolean[]): 'pass' | 'fail' | 'pending' {
   return computeOverallCompliance(passes.map((p) => ({ pass: p })));
 }
 
-export function fmt(n: number | null | undefined, decimals = 3): string {
-  if (n === null || n === undefined || isNaN(n)) return '—';
-  return parseFloat(n.toFixed(decimals)).toString();
+export function fmt(n: number | string | null | undefined, decimals = 3): string {
+  if (n === null || n === undefined || n === '') return '—';
+  const value = typeof n === 'number' ? n : Number(n);
+  if (!Number.isFinite(value)) return '—';
+  return Number(value.toFixed(decimals)).toString();
 }
 
-export function fmtSigned(n: number | null | undefined, decimals = 3): string {
-  if (n === null || n === undefined || isNaN(n)) return '—';
+export function fmtSigned(n: number | string | null | undefined, decimals = 3): string {
+  if (n === null || n === undefined || n === '') return '—';
+  const value = typeof n === 'number' ? n : Number(n);
+  if (!Number.isFinite(value)) return '—';
   const s = fmt(n, decimals);
-  return n > 0 ? `+${s}` : s;
+  return value > 0 ? `+${s}` : s;
 }
